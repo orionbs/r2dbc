@@ -1,13 +1,13 @@
-package io.orionbs.r2dbc;
+package io.orionbs.resilient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class R2dbcApplication {
+public class ResilientApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(R2dbcApplication.class, args);
+        SpringApplication.run(ResilientApplication.class, args);
     }
 
 }
