@@ -1,0 +1,17 @@
+spring:
+  liquibase:
+    change-log: classpath:/database/reactive/master.xml
+    url: jdbc:h2:file:./h2/test
+    user: sa
+    password:
+  r2dbc:
+    url: r2dbc:h2:file:///./h2/test
+    username: sa
+    password:
+    pool:
+      initial-size: 30
+      enabled: true
+      max-idle-time: 60m
+      max-size: 30
+      min-idle: 30
+      validation-depth: remote

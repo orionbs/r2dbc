@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="orionbs" id="create basket table">
+        <preConditions>
+            <not>
+                <tableExists tableName="BASKET"/>
+            </not>
+        </preConditions>
+        <createTable tableName="BASKET">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="PRODUCT_AT" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="BASKET"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="orionbs" id="create fruit table">
+        <preConditions>
+            <not>
+                <tableExists tableName="FRUIT"/>
+            </not>
+        </preConditions>
+        <createTable tableName="FRUIT">
+            <column autoIncrement="true" name="ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="HARVEST_AT" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BASKET_ID" type="BIGINT"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="FRUIT"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="orionbs" id="foreign key basket fruit">
+        <addForeignKeyConstraint constraintName="FK_FRUIT_BASKET" baseTableName="FRUIT" baseColumnNames="BASKET_ID"
+                                 referencedTableName="BASKET" referencedColumnNames="ID"/>
+    </changeSet>
+
+</databaseChangeLog>
